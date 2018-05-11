@@ -1,6 +1,6 @@
   defmodule GeneratorLogic do
     def initialization(data) do
-      IO.puts("Called initialzation !!!")
+      IO.puts("Called initialzation on  #{data}!!!")
       {:ok, data}
     end
   

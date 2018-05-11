@@ -6,7 +6,8 @@ defmodule ExMachinaExample do
 
      children = [
        #Call supervisor with empty list of parameters
-       supervisor(ExMachinaSupervisor, [])
+       supervisor(ExMachinaSupervisor, []),
+       worker(Task, [fn -> run() end], restart: :temporary)
      ]
 
      # start our links like so?
@@ -15,7 +16,8 @@ defmodule ExMachinaExample do
      # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
      # for other strategies and supported options
      opts = [strategy: :one_for_one, name: :main_app]
-
+     
+     IO.puts("Running application")  
      #Start list of children
      Supervisor.start_link(children, opts)
    end
@@ -73,7 +75,7 @@ defmodule ExMachinaExample do
                 Map.put(:type, :time_driven) |>
                 Map.put(:states, [:s1, :s2, :s3, :s4, :S5, :s6, :s7, :s8, :s9]) |>
                 Map.put(:initial_state, :s1) |>
-                Map.put(:data, "tester") |>
+                Map.put(:data, "tester1") |>
                 Map.put(:module_logic, GeneratorLogic) |>
                 Map.put(:initialization_function, :initialization) |>
                 Map.put(:state_process, :state_process) |>
@@ -86,7 +88,7 @@ defmodule ExMachinaExample do
                 Map.put(:type, :time_driven) |>
                 Map.put(:states, [:s1, :s2, :s3, :s4, :S5, :s6, :s7, :s8, :s9]) |>
                 Map.put(:initial_state, :s1) |>
-                Map.put(:data, "tester") |>
+                Map.put(:data, "tester2") |>
                 Map.put(:module_logic, GeneratorLogic) |>
                 Map.put(:initialization_function, :initialization) |>
                 Map.put(:state_process, :state_process) |>

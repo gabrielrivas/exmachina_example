@@ -16,6 +16,9 @@ end
 ```
 
 ##Run application
+mix run --no-halt
+
+##Run method directly
 mix run -e ExMachinaExample.run
 
 
